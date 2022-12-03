@@ -12,79 +12,126 @@
 
 	<!-- CSS FOR STYLING THE PAGE -->
 	<style>
-		table {
-			margin: 0 auto;
-			font-size: large;
-			border: 1px solid black;
-		}
         h1{
-            width: 100%;
+			text-align: center;
+			text-transform: capitalize;
+			text-shadow: #0085A1;
+			font-weight: bolder;
+			color: #4d056c; 
+			font-size: xx-large;
+
         }
-        #text-container {
-          padding: 10px;
-        }
+		h2{
+			text-align: center;
+			color: #181ed6;
+			text-decoration:wavy;
+		}
+        
         #debug{
           font-size: xx-large;
           color: rgb(45, 45, 93);
         }
-		td {
-			background-color: #E4F5D4;
-			border: 1px solid black;
-		}
-
-		th,
-		td {
-			font-weight: bold;
-			border: 1px solid black;
-			padding: 10px;
-			text-align: center;
-		}
-
-		td {
-			font-weight: lighter;
-		}
+		
         body {
-          background-color: lightblue;
-          background-image : url(https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=1380&t=st=1669790242~exp=1669790842~hmac=32d9bface63550e6dc0b3c38e82c0e1091ce9b95f5c59298da9bd4686d11280d);
+          /* background-color: lightblue; */
+          background-image : url(https://cdn.pixabay.com/photo/2017/09/06/13/18/mosaic-2721425__340.jpg);
+		  background-repeat: no-repeat;
+		  background-size: 100%;
           margin: 200px 300px;
-          text-align: center;
+          
         }
+		.search-result h4 {
+    		margin-bottom: 0;
+    		color: #1E0FBE;
+		}
+		.search-result h5 {
+    		font-size: 12px;
+    		margin-top: 5px;
+		}
+		.search-result h6 {
+    		font-size: 12px;
+    		margin-top: 5px;
+			font-weight: bold;
+		}
+		.post-preview > a {
+  color: #212529;
+
+}
+.post-preview > a:focus, .post-preview > a:hover {
+  text-decoration: none;
+  padding-left: 10px;
+  color: #0085A1;
+}
+.post-title{
+	text-align: left;
+	padding-left: 10px;
+}
+.post-preview > a > .post-title {
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+  margin-bottom: 0.625rem;
+  padding-left: 10px;
+}
+.post-preview > a > .post-subtitle {
+  font-weight: 300;
+  margin-bottom: 0.625rem;
+  padding-left: 10px;
+}
+.post-subtitle{
+	color:darkred;
+	padding-left: 10px;
+}
+.post-preview > .post-meta {
+  font-size: 1.125rem;
+  font-style: italic;
+  margin-top: 0;
+  color: #4d056c;
+  padding-left: 10px;
+}
+.post-preview > .post-meta > a {
+  text-decoration: none;
+  padding-left: 10px;
+}
+.post-preview{
+	
+	border-style:double;
+	border-color: rgb(94, 93, 93);
+	border-radius: 5px;
+	padding-left: 10px;
+	
+}
+.post-preview:hover {
+  background-color: rgb(189, 238, 174);
+}
 	</style>
 </head>
 
 <body>
 	<section>
-		<h1>Top K Health Query Intent Retrieval
-        </h1>
-        <hr>
+		
+		<h1>-------------- Search Results -------------- </h1>
+        
        <br>
-       <h2>Results</h2>
-	   <h1>{{data.Drug}}</h1>
-		<!-- TABLE CONSTRUCTION-->
-		<table id='table'>
-			<!-- HEADING FORMATION -->
-			<tr>
-				<th>Drug</th>
-				<th>Product</th>
-				<th>Query</th>
-                <th>Answer</th>
-                <th>Query Type</th>
-				
-			</tr>
-			<!-- TABLE BODY -->
+       
+	   
+		{% for row in data %}
+		<!-- <div class="search-result"> -->
+			<!-- <h4>{{row.Query }}| {{row.Qtype}}</h4> -->
+			<!-- <h5>{{row.Answer}}</h5> -->
+			<!-- <h6>{{row.Drug}} | {{row.Product}} </h6> -->
+			<!-- <br> -->
+		<!-- </div> -->
+		<div class="post-preview">
 			
-			{% for row in data %}		
-			<tr>
-				<!-- TABLE DATA -->
-				<td>{{row.Drug}}</td>
-				<td>{{row.Product}}</td>
-				<td>{{row.Query}}</td>
-				<td>{{row.Answer}}</td>
-				<td>{{row.Query_Type}}</td>
-			</tr>
-			{% endfor %}
-		</table>
-
+			<h2 class="post-title"> {{row.Query }} </h2> 
+			<h3 class="post-subtitle">{{row.Answer}}</h3>
+		
+		<p class="post-meta">
+			<b>{{row.Drug}} </b>| {{row.Product}} | {{row.Query_Type}} 
+		</p>
+		</div>
+		{% endfor %}
+		
 	</section>
 </body>
 
